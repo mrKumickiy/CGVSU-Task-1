@@ -11,16 +11,19 @@ public class DrawingPanel extends JPanel implements ActionListener {
     private final int PANEL_HEIGHT;
     private int ticksFromStart = 0;
     private final Timer timer;
+    private final Background background;
 
     public DrawingPanel(int width, int height, int timerDelay) {
         this.PANEL_WIDTH = width;
         this.PANEL_HEIGHT = height;
         this.timer = new Timer(timerDelay, this);
+        this.background = new Background(Color.CYAN,Color.GRAY,Color.YELLOW,(int)(PANEL_HEIGHT * 0.65),100,PANEL_WIDTH - 250);
     }
 
     @Override
     public void paint(Graphics graphics) {
         super.paint(graphics);
+        background.draw(graphics, PANEL_WIDTH, PANEL_HEIGHT);
     }
 
     @Override

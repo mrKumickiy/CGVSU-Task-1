@@ -5,8 +5,11 @@ import java.awt.*;
 
 public class MainWindow extends JFrame {
 
-    public MainWindow() throws HeadlessException {
-        DrawingPanel drawingPanel = new DrawingPanel(this.getWidth(), this.getHeight(),100);
-        this.add(drawingPanel);
+    private final DrawingPanel panel;
+
+    public MainWindow(int width, int height) throws HeadlessException {
+        setSize(width, height);
+        panel = new DrawingPanel(this.getWidth(), this.getHeight(),100);
+        this.add(panel);
     }
 }
