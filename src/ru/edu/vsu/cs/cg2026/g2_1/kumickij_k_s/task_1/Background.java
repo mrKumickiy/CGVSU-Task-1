@@ -10,6 +10,30 @@ public class Background {
     private int sunRadius;
     private int sunXOffset;
 
+    public void setSkyColor(Color skyColor) {
+        this.skyColor = skyColor;
+    }
+
+    public void setGroundColor(Color groundColor) {
+        this.groundColor = groundColor;
+    }
+
+    public void setSunColor(Color sunColor) {
+        this.sunColor = sunColor;
+    }
+
+    public void setSkyHeight(int skyHeight) {
+        this.skyHeight = skyHeight;
+    }
+
+    public void setSunRadius(int sunRadius) {
+        this.sunRadius = sunRadius;
+    }
+
+    public void setSunXOffset(int sunXOffset) {
+        this.sunXOffset = sunXOffset;
+    }
+
     public Background(Color skyColor, Color groundColor, Color sunColor, int skyHeight, int sunRadius, int sunXOffset) {
         this.skyColor = skyColor;
         this.groundColor = groundColor;
@@ -25,7 +49,7 @@ public class Background {
         gr.fillRect(0,0, panelWidth, skyHeight);
 
         gr.setColor(sunColor);
-        gr.fillOval(sunXOffset,skyHeight / 2-2*sunRadius,sunRadius * 2, sunRadius * 2);
+        gr.fillOval(sunXOffset,skyHeight / 2 - 2 * sunRadius,2 * sunRadius, 2 * sunRadius);
 
         gr.setColor(groundColor);
         gr.fillRect(0,skyHeight, panelWidth, panelHeight - skyHeight);
