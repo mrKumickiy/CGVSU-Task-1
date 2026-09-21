@@ -4,39 +4,43 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Time;
 
 public class DrawingPanel extends JPanel implements ActionListener {
     private final int PANEL_WIDTH;
     private final int PANEL_HEIGHT;
     private int ticksFromStart = 0;
     private final Timer timer;
-    private final Background background;
+    private final Sky sky;
+    private final Road road;
     private final CarModel carModel;
 
     public DrawingPanel(int width, int height, int timerDelay) {
         this.PANEL_WIDTH = width;
         this.PANEL_HEIGHT = height;
         this.timer = new Timer(timerDelay, this);
-        this.background = new Background(Color.CYAN, Color.GRAY, Color.YELLOW,
-                (int)(PANEL_HEIGHT * 0.65), 100, PANEL_WIDTH - 250);
+        this.sky = new Sky(Color.CYAN, 100, PANEL_WIDTH - 250, 25, Color.YELLOW);
+        this.road = new Road((int)(0.65 * PANEL_HEIGHT),Color.GRAY,(int)(0.2 * PANEL_WIDTH),(int)(0.1 * PANEL_HEIGHT),(int)(0.05 * PANEL_WIDTH), Color.WHITE);
+        road.setMarkupY(road.getRoadHeight()/2 - road.getMarkupHeight());
         this.carModel = new CarModel((int)(0.1 * PANEL_WIDTH), (int)(0.4 * PANEL_HEIGHT),
                 (int)(0.45 * PANEL_WIDTH), (int)(0.4 * PANEL_HEIGHT), 12,
                 Color.YELLOW, Color.BLUE, Color.WHITE, Color.RED);
+        timer.start();
     }
 
     @Override
     public void paint(Graphics graphics) {
         super.paint(graphics);
-        background.draw(graphics, PANEL_WIDTH, PANEL_HEIGHT);
+        sky.draw(graphics, PANEL_WIDTH, PANEL_HEIGHT);
+        road.draw(graphics, PANEL_WIDTH, PANEL_HEIGHT);
         carModel.draw(graphics);
     }
 
     @Override
     public void actionPerformed(ActionEvent event) {
         if (event.getSource() == timer) {
-            repaint();
             ticksFromStart++;
+            road.setMarkupX(ticksFromStart);
+            repaint();
         }
     }
 }
