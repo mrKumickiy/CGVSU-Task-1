@@ -8,7 +8,10 @@ import java.awt.event.ActionListener;
 public class DrawingPanel extends JPanel implements ActionListener {
     private final int PANEL_WIDTH;
     private final int PANEL_HEIGHT;
+    private final int ROAD_SPEED = 20;
+
     private int ticksFromStart = 0;
+
     private final Timer timer;
     private final Sky sky;
     private final Road road;
@@ -39,7 +42,7 @@ public class DrawingPanel extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent event) {
         if (event.getSource() == timer) {
             ticksFromStart++;
-            road.setMarkupX(ticksFromStart);
+            road.setMarkupX(ROAD_SPEED * ticksFromStart);
             repaint();
         }
     }

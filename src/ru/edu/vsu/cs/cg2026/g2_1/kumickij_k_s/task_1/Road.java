@@ -81,7 +81,7 @@ public class Road {
         gr.fillRect(0,panelHeight - roadHeight, panelWidth, roadHeight);
 
         gr.setColor(markupColor);
-        for (int x = markupX; x < panelWidth; x += markupPeriod) {
+        for (int x = panelWidth + markupPadding - markupX; x > -markupWidth; x -= markupPeriod) {
             gr.fillRect(x, panelHeight - roadHeight + markupY, markupWidth, markupHeight);
         }
     }
