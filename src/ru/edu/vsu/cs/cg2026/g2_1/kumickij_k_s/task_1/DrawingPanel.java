@@ -9,6 +9,7 @@ public class DrawingPanel extends JPanel implements ActionListener {
     private final int PANEL_WIDTH;
     private final int PANEL_HEIGHT;
     private final int ROAD_SPEED = 20;
+    private final int WHEEL_TURING_SPEED = -15;
 
     private int ticksFromStart = 0;
 
@@ -16,6 +17,7 @@ public class DrawingPanel extends JPanel implements ActionListener {
     private final Sky sky;
     private final Road road;
     private final CarModel carModel;
+    private final CarWheel carWheel;
 
     public DrawingPanel(int width, int height, int timerDelay) {
         this.PANEL_WIDTH = width;
@@ -27,6 +29,7 @@ public class DrawingPanel extends JPanel implements ActionListener {
         this.carModel = new CarModel((int)(0.1 * PANEL_WIDTH), (int)(0.4 * PANEL_HEIGHT),
                 (int)(0.45 * PANEL_WIDTH), (int)(0.4 * PANEL_HEIGHT), 12,
                 Color.YELLOW, Color.BLUE, Color.WHITE, Color.RED);
+        this.carWheel = new CarWheel((int)(0.25 * PANEL_WIDTH),(int)(0.75 * PANEL_HEIGHT), (int)(0.05 * PANEL_WIDTH),Color.BLACK, Color.LIGHT_GRAY);
         timer.start();
     }
 
@@ -36,6 +39,7 @@ public class DrawingPanel extends JPanel implements ActionListener {
         sky.draw(graphics, PANEL_WIDTH, PANEL_HEIGHT);
         road.draw(graphics, PANEL_WIDTH, PANEL_HEIGHT);
         carModel.draw(graphics);
+        carWheel.draw(graphics);
     }
 
     @Override
@@ -43,6 +47,7 @@ public class DrawingPanel extends JPanel implements ActionListener {
         if (event.getSource() == timer) {
             ticksFromStart++;
             road.setMarkupX(ROAD_SPEED * ticksFromStart);
+            carWheel.setAngle(Math.toRadians(WHEEL_TURING_SPEED * ticksFromStart));
             repaint();
         }
     }
