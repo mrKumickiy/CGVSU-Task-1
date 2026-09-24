@@ -9,7 +9,7 @@ public class MainWindow extends JFrame {
 
     public MainWindow(int width, int height) throws HeadlessException {
         setSize(width, height);
-        panel = new DrawingPanel(this.getWidth(), this.getHeight(),100);
+        panel = new DrawingPanel(this.getWidth(), this.getHeight(),50);
         this.add(panel);
     }
 }
