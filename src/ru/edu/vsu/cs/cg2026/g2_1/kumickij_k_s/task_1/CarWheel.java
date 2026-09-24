@@ -27,6 +27,17 @@ public class CarWheel {
         this.angle = angle;
     }
 
+    public void setWheelColor(Color wheelColor) {
+        this.wheelColor = wheelColor;
+    }
+
+    public void setDiskColor(Color diskColor) {
+        this.diskColor = diskColor;
+    }
+
+    public int getRadius() {
+        return radius;
+    }
     public CarWheel(int x, int y, int radius, Color wheelColor, Color diskColor) {
         this.x = x;
         this.y = y;

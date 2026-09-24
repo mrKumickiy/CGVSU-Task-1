@@ -2,7 +2,7 @@ package ru.edu.vsu.cs.cg2026.g2_1.kumickij_k_s.task_1;
 
 import java.awt.*;
 
-public class CarModel {
+public class CarBody {
     private int x;
     private int y;
     private int width;
@@ -49,7 +49,23 @@ public class CarModel {
         this.backLightColor = backLightColor;
     }
 
-    public CarModel(int x, int y, int width, int height, int roundness, Color bodyColor, Color windowColor, Color frontLightColor, Color backLightColor) {
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public CarBody(int x, int y, int width, int height, int roundness, Color bodyColor, Color windowColor, Color frontLightColor, Color backLightColor) {
         this.x = x;
         this.y = y;
         this.width = width;
