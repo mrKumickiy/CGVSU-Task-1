@@ -2,7 +2,7 @@ package ru.edu.vsu.cs.cg2026.g2_1.kumickij_k_s.task_1;
 
 import java.awt.*;
 
-public class Sky {
+public class Sky implements DrawableObject {
     private Color skyColor;
     private int sunRadius;
     private int sunX;
@@ -35,6 +35,7 @@ public class Sky {
         this.sunColor = sunColor;
     }
 
+    @Override
     public void draw(Graphics graphics,int panelWidth,int panelHeight) {
         Graphics2D gr = (Graphics2D) graphics;
         gr.setColor(skyColor);

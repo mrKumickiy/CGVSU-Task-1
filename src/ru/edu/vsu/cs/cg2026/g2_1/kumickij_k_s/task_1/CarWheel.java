@@ -3,7 +3,7 @@ package ru.edu.vsu.cs.cg2026.g2_1.kumickij_k_s.task_1;
 import java.awt.*;
 import java.awt.geom.AffineTransform;
 
-public class CarWheel {
+public class CarWheel implements DrawableObject {
     private int x;
     private int y;
     private int radius;
@@ -51,7 +51,8 @@ public class CarWheel {
         this.angle = angle;
     }
 
-    public void draw(Graphics graphics) {
+    @Override
+    public void draw(Graphics graphics, int panel_width, int panel_height) {
         int rectWidth = (int) (2 * 0.75 * radius);
         int rectHeight = (int) (2 * 0.15 * radius);
         Graphics2D gr = (Graphics2D) graphics;

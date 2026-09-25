@@ -1,19 +1,20 @@
 package ru.edu.vsu.cs.cg2026.g2_1.kumickij_k_s.task_1;
 
 import java.awt.*;
-import java.security.PublicKey;
 
-public class Car {
+public class Car implements DrawableObject {
     private final CarBody body;
     private final CarWheel backWheel;
     private final CarWheel frontWheel;
+    private int wheelAngularSpeed;
 
-    public Car(int x, int y, int width, int height, int wheelRadius, int roundness,
+    public Car(int x, int y, int width, int height, int wheelRadius, int wheelAngularSpeed, int roundness,
                Color bodyColor, Color windowColor, Color frontLightColor, Color backLightColor,
                Color wheelColor, Color diskColor) {
         this.body = new CarBody(x, y, width, height, roundness, bodyColor, windowColor, frontLightColor, backLightColor);
         this.backWheel = new CarWheel((int) (body.getX() + 0.1 * body.getWidth()), body.getY() + body.getHeight() - wheelRadius, wheelRadius, wheelColor, diskColor);
         this.frontWheel = new CarWheel((int) (body.getX() + 0.9 * body.getWidth() - 2 * wheelRadius), body.getY() + body.getHeight() - wheelRadius, wheelRadius, wheelColor, diskColor);
+        this.wheelAngularSpeed = wheelAngularSpeed;
     }
 
     public void setX(int x) {
@@ -82,9 +83,19 @@ public class Car {
         this.frontWheel.setDiskColor(diskColor);
     }
 
-    public void draw(Graphics graphics) {
-        this.body.draw(graphics);
-        this.backWheel.draw(graphics);
-        this.frontWheel.draw(graphics);
+    public void setWheelAngularSpeed(int speed) {
+        this.wheelAngularSpeed = speed;
+    }
+
+    @Override
+    public void draw(Graphics graphics, int panelWidth, int panelHeight) {
+        this.body.draw(graphics, panelWidth, panelHeight);
+        this.backWheel.draw(graphics, panelWidth, panelHeight);
+        this.frontWheel.draw(graphics, panelWidth, panelHeight);
+    }
+    @Override
+    public void update(int tick) {
+        this.backWheel.setAngle(Math.toRadians(wheelAngularSpeed * tick));
+        this.frontWheel.setAngle(Math.toRadians(wheelAngularSpeed * tick));
     }
 }

@@ -12,4 +12,6 @@ public class MainWindow extends JFrame {
         panel = new DrawingPanel(this.getWidth(), this.getHeight(),50);
         this.add(panel);
     }
+
+    public DrawingPanel getPanel() {return panel;}
 }

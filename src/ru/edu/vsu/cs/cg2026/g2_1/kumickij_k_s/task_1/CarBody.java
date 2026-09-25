@@ -2,7 +2,7 @@ package ru.edu.vsu.cs.cg2026.g2_1.kumickij_k_s.task_1;
 
 import java.awt.*;
 
-public class CarBody {
+public class CarBody implements DrawableObject {
     private int x;
     private int y;
     private int width;
@@ -77,7 +77,8 @@ public class CarBody {
         this.backLightColor = backLightColor;
     }
 
-    public void draw(Graphics graphics) {
+    @Override
+    public void draw(Graphics graphics, int panel_width, int panel_height) {
         Graphics2D gr = (Graphics2D) graphics;
 
         int upperBodyWidth = (int)(0.65 * width);

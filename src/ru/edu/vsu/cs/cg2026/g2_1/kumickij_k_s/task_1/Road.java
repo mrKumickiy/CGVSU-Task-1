@@ -2,7 +2,8 @@ package ru.edu.vsu.cs.cg2026.g2_1.kumickij_k_s.task_1;
 
 import java.awt.*;
 
-public class Road {
+public class Road implements DrawableObject {
+    private int roadSpeed;
     private int roadHeight;
     private Color roadColor;
     private int markupWidth;
@@ -47,6 +48,8 @@ public class Road {
         this.markupY = y;
     }
 
+    public void setRoadSpeed(int speed) {this.roadSpeed = speed;}
+
     public int getRoadHeight() {
         return roadHeight;
     }
@@ -55,7 +58,8 @@ public class Road {
         return markupHeight;
     }
 
-    public Road(int roadHeight, Color roadColor, int markupWidth, int markupHeight, int markupPadding, Color markupColor) {
+    public Road(int roadSpeed,int roadHeight, Color roadColor, int markupWidth, int markupHeight, int markupPadding, Color markupColor) {
+        this.roadSpeed = roadSpeed;
         this.roadHeight = roadHeight;
         this.roadColor = roadColor;
         this.markupWidth = markupWidth;
@@ -65,15 +69,17 @@ public class Road {
         markupPeriod = markupWidth + markupPadding;
     }
 
-    public Road(int roadHeight, Color roadColor, int markupWidth, int markupHeight, int markupPadding, int markupY, Color markupColor) {
-        this(roadHeight, roadColor, markupWidth, markupHeight, markupPadding, markupColor);
+    public Road(int roadSpeed, int roadHeight, Color roadColor, int markupWidth, int markupHeight, int markupPadding, int markupY, Color markupColor) {
+        this(roadSpeed,roadHeight, roadColor, markupWidth, markupHeight, markupPadding, markupColor);
         this.markupY = markupY;
     }
 
-    public Road(int roadHeight, Color roadColor, int markupWidth, int markupHeight, int markupPadding, int markupX, int markupY, Color markupColor) {
-        this(roadHeight, roadColor, markupWidth, markupHeight, markupPadding, markupY, markupColor);
+    public Road(int roadSpeed, int roadHeight, Color roadColor, int markupWidth, int markupHeight, int markupPadding, int markupX, int markupY, Color markupColor) {
+        this(roadSpeed, roadHeight, roadColor, markupWidth, markupHeight, markupPadding, markupY, markupColor);
         setMarkupX(markupX);
     }
+
+    @Override
     public void draw(Graphics graphics, int panelWidth, int panelHeight) {
         Graphics2D gr = (Graphics2D) graphics;
 
@@ -84,5 +90,9 @@ public class Road {
         for (int x = panelWidth + markupPadding - markupX; x > -markupWidth; x -= markupPeriod) {
             gr.fillRect(x, panelHeight - roadHeight + markupY, markupWidth, markupHeight);
         }
+    }
+    @Override
+    public void update(int tick) {
+        setMarkupX(roadSpeed * tick);
     }
 }
